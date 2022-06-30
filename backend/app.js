@@ -1,9 +1,7 @@
-const express= require('express')
+const express=require('express')
 const app=express()
-app.use(express.json)
-
-// Route imports
-const product=require('./routes/productroutes')
-
-app.get('/api/v1',product)
+const product=require('./routes/productRoutes')
+app.use(express.json())
+app.get('/', (req,res)=>{res.send("OK");})
+app.use('/api/v1',product);
 module.exports=app
