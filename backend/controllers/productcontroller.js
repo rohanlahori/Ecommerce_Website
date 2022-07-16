@@ -1,7 +1,9 @@
 const Product=require('../models/productModels')
 const ErrorHandler = require('../utils/errorhandler')
 const theFunc=require('../middleware/catchAsyncErrors')
-const catchAsyncErrors = require('../middleware/catchAsyncErrors')
+const catchAsyncErrors = require('../middleware/catchAsyncErrors');
+const ApiFeatures = require('../utils/apifeatures');
+
 //  Create a new product put request --- used
 exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
     const product=await Product.create(req.body)
@@ -14,10 +16,20 @@ exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 
 //  Get all products
 exports.getAllProducts=catchAsyncErrors(async(req,res)=>{
-    const product=await Product.find()
-    console.log(product)
 
-    res.send(product)
+    const resultsperPage=5;
+    const productCount=await Product.countDocuments();
+
+    const apifeatures=new ApiFeatures(Product.find(),req.query)
+    .search()
+    .filter()
+    .pagination(resultsperPage)
+    const product=await apifeatures.query
+    res.status(200).json({
+        success:true,
+        product,
+        productCount
+    })
 });
 
 // Update Product -- Admin Route
