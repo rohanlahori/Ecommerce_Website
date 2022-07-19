@@ -4,10 +4,12 @@ const product=require('./routes/productRoutes')
 const middleware=require('./middleware/error')
 const theFunc=require('./middleware/catchAsyncErrors')
 const user=require('./routes/userRoutes')
+const cookieParser=require('cookie-parser')
 
 app.use(express.json())
 app.get('/', (req,res)=>{res.send("OK");})
 
+app.use(cookieParser()); 
 app.use('/api/v1',product);
 app.use('/api/v1/',user);
 

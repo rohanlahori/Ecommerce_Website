@@ -6,8 +6,8 @@ const ApiFeatures = require('../utils/apifeatures');
 
 //  Create a new product put request --- used
 exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
+    req.body.user=req.user.id;
     const product=await Product.create(req.body)
-
     res.status(201).json({
         success:true,
         product
@@ -36,7 +36,6 @@ exports.getAllProducts=catchAsyncErrors(async(req,res)=>{
 
 exports.updateProducts=catchAsyncErrors(async(req,res,next)=>{
     let products= await Product.findById(req.params.id)
-
     if(!product){
         return next(new ErrorHandler("Product Not Found",404));
     }
