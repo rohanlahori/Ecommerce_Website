@@ -79,3 +79,96 @@ exports.getSingleProduct=catchAsyncErrors(async(req,res,next)=>{
         product
     })
 });
+
+
+// Create new Review or Update the Review 
+exports.createProductReview=catchAsyncErrors(async(req,res,next)=>{
+    const {rating,comment,productID}=req.body;
+    const review={
+        user:req.user._id,
+        name:req.user.name,
+        rating:Number(rating),
+        comment,
+    }
+    const product=await Product.findById(productID)
+    const isReviewed=product.reviews.find(rev=>rev.user.toString()===req.user._id.toString());
+    if(isReviewed){
+        product.reviews.forEach(rev=>{
+            if(rev.user.toString()===req.user._id.toString()){
+                rev.rating=rating,
+                rev.comment=comment
+            }
+        })
+    }
+    else{
+        product.reviews.push(review);
+        product.numberofReviews=product.reviews.length
+    }
+
+    // Find Average Rating of a given Product
+    let avg=0;
+    product.reviews.forEach(rev=>{
+        avg=avg+rev.rating;
+    });
+    avg/=product.reviews.length;
+    product.ratings=avg;
+
+    const numberofReviews=reviews.length;
+    await product.save({ validateBeforeSave:false});
+    res.status(200).json({
+        success:true,
+        product
+    })
+});
+
+// Get All Product Review of any single Product
+exports.getProductReviews=catchAsyncErrors(async(req,res,next)=>{
+    const product=await Product.findById(req.query.id);
+
+    if(!product){
+        return next(new ErrorHandler("Product does not exist"));
+    }
+    res.status(200).json({
+        success:true,
+        reviews:product.reviews,
+    })
+});
+
+
+
+// Delete Review
+exports.deleteReview=catchAsyncErrors(async(req,res,next)=>{
+    const product=await Product.findById(req.query.productID);
+    if(!product){
+        return next(new ErrorHandler("Product does not exist"));
+    }
+    const reviews=product.reviews
+    .filter(rev=>rev._id.toString()!=req.query.id.toString());
+    
+    // As Some of the reviews are deleted we will find the average again
+    // Find Average Rating of a given Product
+    let avg=0;
+
+    reviews.forEach((rev)=>{
+        avg=avg+rev.rating;
+    });
+    avg/=(product.reviews.length);
+
+    console.log(1000)
+    const ratings=avg;
+    const numberofReviews=reviews.length;
+
+    await Product.findByIdAndUpdate(req.query.productID,{
+        reviews,
+        ratings,
+        numberofReviews
+    }, 
+    {
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+    })
+    res.status(200).json({
+        success:true,
+    })
+});
