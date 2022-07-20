@@ -4,9 +4,10 @@ const User=require('../models/userModels')
 const sendToken=require('../utils/jwttoken')
 const sendEmail=require('../utils/sendEmail')
 const crypto=require('crypto');
-const e = require('express');
-// Register a user
 
+
+
+// Register a user
 exports.registerUser=catchAsyncErrors(async(req,res,next)=>{
     const {name,email,password}=req.body;
     const user=await User.create({
@@ -31,11 +32,9 @@ exports.loginUser=catchAsyncErrors(async(req,res,next)=>{
     }
 
     const user=await User.findOne({email}).select("+password");
-
     if(!user){
         return next(new ErrorHandler("Invalid Email or Password",401));
     }
-
     const isPasswordMatched=await user.comparePassword(password);
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid Email or Password",401))
@@ -119,4 +118,68 @@ exports.resetPassword=catchAsyncErrors(async(req,res,next)=>{
     user.resetPasswordExpire=undefined;
     await user.save();
     sendToken(user,200,res)
+});
+
+
+// Get User Details'
+
+
+exports.getUserdetails=catchAsyncErrors(async (req,res,next)=>{
+    const user=await User.findById(req.user.id);
+    if(!user){
+        return next(new ErrorHandler("User not found",404));
+    }
+    res.status(200).json({
+        success:true,
+        user
+    });
+});
+
+
+// Update Password
+exports.updatePassword=catchAsyncErrors(async(req,res,next)=>{
+    const user=await User.findById(req.user.id).select("+password");
+    const isPasswordMatched=await user.comparePassword(req.body.oldPassword);
+    console.log(req.body.oldPassword);
+
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Old Password is incorrect",401))
+    }
+    if(req.body.newpassword !== req.body.confirmnewPassword){
+        return next(new ErrorHandler("Password and Confirm Password doesn't match",401))
+    }
+    user.password=req.body.confirmPassword;
+    await user.save();
+    // Save the whole data in database
+
+    sendToken(user,200,res);
+});
+
+// Update User Porfile
+exports.updateProfile=catchAsyncErrors(async(req,res,next)=>{
+    
+
+    const newUserData={
+        name:req.body.name,
+        email:req.body.email
+    }
+
+    const user=await User.findById(req.user.id);
+    user.name=newUserData.name;
+    user.email=newUserData.email;
+
+
+
+    // Alternate Way of updating the profile 
+
+    // const user=await User.findByIdAndUpdate(req.user.id,newUserData,{
+    //     new:true,
+    //     runValidators:true,
+    //     useFindAndModify:false
+    // });
+    
+    
+    // Save the whole data in database
+    await user.save();
+    sendToken(user,200,res);
 });
