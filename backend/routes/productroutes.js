@@ -10,5 +10,3 @@ router.route('/product/:id').put(isAuthenticatedUser,authorizeRoles("admin"),upd
 router.route('/product/:id').get(getSingleProduct);
 module.exports=router
 
-
-// 62d5b6f926d96fbd7cac2767
