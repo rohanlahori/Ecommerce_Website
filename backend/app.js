@@ -5,6 +5,7 @@ const middleware=require('./middleware/error')
 const theFunc=require('./middleware/catchAsyncErrors')
 const user=require('./routes/userRoutes')
 const cookieParser=require('cookie-parser')
+const order=require('./routes/orderRoutes')
 
 app.use(express.json())
 app.get('/', (req,res)=>{res.send("OK");})
@@ -12,6 +13,8 @@ app.get('/', (req,res)=>{res.send("OK");})
 app.use(cookieParser()); 
 app.use('/api/v1',product);
 app.use('/api/v1/',user);
+app.use('/api/v1/',order);
+
 
 
 // Middleware for error
