@@ -1,5 +1,5 @@
 const Order=require('../models/orderModel')
-const product=require('../models/productModels')
+const Product=require('../models/productModels')
 const ErrorHandler=require('../utils/errorhandler')
 const catchAsyncErrors=require('../middleware/catchAsyncErrors')
 
