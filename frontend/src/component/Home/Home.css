@@ -60,7 +60,7 @@
     color: rgb(0, 0, 0, 0.7);
   }
   
-  /*.container {
+  .container {
     display: flex;
     margin: 2vmax auto;
     width: 80vw;
@@ -70,22 +70,22 @@
   }
   
   .productCard {
-    width: 14vmax;
+    width: 20vmax;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: rgb(48, 48, 48);
-    margin: 2vmax;
+    margin: 3vmax;
     transition: all 0.5s;
     padding-bottom: 0.5vmax;
   }
   
-  .productCard > img {
-    width: 14vmax;
+   .productCard > img {
+    width: 15vmax;
   }
   
   .productCard > div {
-    margin: 0.5vmax;
+    margin: vmax;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -98,7 +98,7 @@
   
   .productCard > p {
     font-family: "Roboto";
-    font-size: 1.2vmax;
+    font-size: 1.6vmax;
     margin: 1vmax 0.5vmax;
     margin-bottom: 0;
   }
@@ -107,7 +107,7 @@
     margin: 0.5vmax;
     color: tomato;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-size: 1vmax;
+    font-size: 1.4vmax;
   }
   
   .productCard:hover {
@@ -134,4 +134,4 @@
       margin: 0 0.5vmax;
       font: 300 1vmax "Roboto";
     }
-  }  */ 
+  }  
