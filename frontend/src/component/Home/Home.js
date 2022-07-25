@@ -5,9 +5,10 @@ import Product from './Product.js'
 import MetaData from "../layout/MetaData";
 // import ProductCard from "./ProductCard.js";
 // import { clearErrors, getProduct } from "../../actions/productAction";
-// import { useSelector, useDispatch } from "react-redux";
 // import Loader from "../layout/Loader/Loader";
 // import { useAlert } from "react-alert";
+import { getProduct } from "../../actions/productAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const product={
     name:"Racket",
@@ -16,7 +17,10 @@ const product={
     _id:"rohan",
 }
 const Home = () => {
-
+    const dispatch=useDispatch();
+    useEffect(()=>{
+        dispatch(getProduct());
+    },[dispatch])
   return (
     <Fragment>
         <MetaData title="Badminton Store"/>
