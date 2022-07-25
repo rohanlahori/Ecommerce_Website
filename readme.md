@@ -21,3 +21,7 @@
 12:33:14 Creating Admin Routes
 15:17:31 Finalizing Before Deployment
 15:27:02 Deploying on Heroku
+
+
+Redux:
+    Reducer, Action, Constants
