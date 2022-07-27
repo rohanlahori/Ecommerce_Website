@@ -14,7 +14,7 @@ const options={
 const Product = ({product}) => {
   return (
     <Link className='productCard' to={product._id} >
-        <img src={product.images[0].url} alt={product.name}></img>
+        <img src={"https://cdn.pixabay.com/photo/2022/06/26/14/36/raspberry-7285625_1280.jpg"} alt={product.name}></img>
         <p>{product.name}</p>
         <div>
             <ReactStars {...options}/> <span> (256 reviews) </span>

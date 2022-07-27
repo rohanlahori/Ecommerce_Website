@@ -12,14 +12,16 @@ const product={
     _id:"rohan",
 }
 
-// console.log(getProduct)
+
 const Home = () => {
-    
     const dispatch=useDispatch();
+    const {loading,error,products,productsCount}= 
+    useSelector((state)=>state.products
+    );
+
     useEffect(()=>{
         dispatch(getProduct());
-    },[dispatch])
-
+    },[dispatch]);
   return (
     <Fragment>
         <MetaData title="Badminton Store"/>
@@ -33,14 +35,12 @@ const Home = () => {
             </a>
         </div>
         <h2 className="homeHeading">Featured Product</h2>
-        <div className="container" id="container">
-            <Product product={product}/>
-            <Product product={product}/>
-            <Product product={product}/>
-            <Product product={product}/>
-            <Product product={product}/>
-            <Product product={product}/>
-            <Product product={product}/>
+        <div className="container" id="container">  
+        {
+            products && products.map((product,index)=>(
+                <Product product={product}key={index}/>
+            ))
+        }
         </div>
     </Fragment>
   );
