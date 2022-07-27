@@ -7,6 +7,7 @@ const reudcer=combineReducers({
     products:ProductReducer
 });
 let initialState={};
+
 const middleware=[thunk];
 
 const store=createStore(

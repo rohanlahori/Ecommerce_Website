@@ -30,5 +30,4 @@
     "nodemon": "^2.0.18",
     "validator": "^13.7.0"
   }
-  // "proxy":
 }
