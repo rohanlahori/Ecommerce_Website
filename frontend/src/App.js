@@ -1,10 +1,14 @@
 import './App.css';
 import Header from './component/layout/Header/Header.jsx'
-import {BrowserRouter as Router,Route} from "react-router-dom"
-import WebFont from "webfontloader"
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";import WebFont from "webfontloader"
 import React from 'react';
 import Footer from './component/layout/Footer/Footer'
 import Home from './component/Home/Home.js'
+import Loader from './component/layout/Loader/Loader';
 
 function App() {
   React.useEffect(()=>{
@@ -15,11 +19,12 @@ function App() {
     });
   },[]);
   return (
-     <Router> 
-      <Header/>
-      <Home/>
-      <Footer/>
-    </Router>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/loader" element={<Loader />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 

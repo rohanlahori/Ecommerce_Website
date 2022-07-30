@@ -5,14 +5,7 @@ import Product from './Product.js'
 import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
-const product={
-    name:"Racket",
-    images: [{url:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1MibONNsvce82gFxePW7awRMJHsxZ5cWE4g&usqp=CAU'}],
-    price: 'Rs:5000',
-    _id:"rohan",
-}
-
-
+import Loader from "../layout/Loader/Loader";
 const Home = () => {
     const dispatch=useDispatch();
     const {loading,error,products,productsCount}= 
@@ -23,26 +16,52 @@ const Home = () => {
         dispatch(getProduct());
     },[dispatch]);
   return (
-    <Fragment>
-        <MetaData title="Badminton Store"/>
-        <div className="banner">
-            <p>Welcome to E-commerce</p>
-            <h1>Find Amazing Products below</h1>
-            <a href="#container">
-               <button>
-                Scroll<FaMouse/>
-                </button> 
-            </a>
-        </div>
-        <h2 className="homeHeading">Featured Product</h2>
-        <div className="container" id="container">  
-        {
-            products && products.map((product,index)=>(
-                <Product product={product}key={index}/>
-            ))
-        }
-        </div>
-    </Fragment>
+    // <Fragment>
+    //     {
+    //         loading ? (<Loader/>):
+    //     (
+    //     <Fragment>
+    //         <MetaData title="Badminton Store"/>
+    //         <div className="banner">
+    //             <p>Welcome to E-commerce</p>
+    //             <h1>Find Amazing Products below</h1>
+    //             <a href="#container">
+    //             <button>
+    //                 Scroll<FaMouse/>
+    //                 </button> 
+    //             </a>
+    //         </div>
+    //         <h2 className="homeHeading">Featured Product</h2>
+    //         <div className="container" id="container">  
+    //         {
+    //             products && products.map((product,index)=>(
+    //                 <Product product={product}key={index}/>
+    //             ))
+    //         }
+    //         </div>
+    //     </Fragment>    
+    //     )};
+    // </Fragment>
+            <Fragment>
+            <MetaData title="Badminton Store"/>
+            <div className="banner">
+                <p>Welcome to E-commerce</p>
+                <h1>Find Amazing Products below</h1>
+                <a href="#container">
+                <button>
+                    Scroll<FaMouse/>
+                    </button> 
+                </a>
+            </div>
+            <h2 className="homeHeading">Featured Product</h2>
+            <div className="container" id="container">  
+            {
+                products && products.map((product,index)=>(
+                    <Product product={product}key={index}/>
+                ))
+            }
+            </div>
+        </Fragment>    
   );
 };
 
