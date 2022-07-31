@@ -17,7 +17,7 @@ export const getProduct=()=> async(dispatch)=>{
             type:ALL_PRODUCT_REQUEST
         });
         const {data}=await axios.get("/api/v1/products")
-        // console.log(data.products[0]._id);
+        console.log(data);
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:data,
@@ -36,10 +36,7 @@ export const getProductDetails=(id)=> async(dispatch)=>{
         dispatch({
             type:PRODUCT_DETAILS_REQUEST
         });
-        const {data}=await axios.get(`/api/v1/products${id}`)
-        const {req_data}=data.products[0]._id;
-        console.log(req_data);
-        console.log(data);
+        const {data}=await axios.get(`/api/v1/product/${id}`)
         dispatch({
             type:PRODUCT_DETAILS_SUCCESS,
             payload:data.product,
@@ -52,6 +49,26 @@ export const getProductDetails=(id)=> async(dispatch)=>{
         })
     }
 }
+
+// export const getProductDetails=(id)=> async(dispatch)=>{
+//     try{
+//         dispatch({
+//             type:PRODUCT_DETAILS_REQUEST
+//         });
+//         const {data}=await axios.get(`/api/v1/products${id}`)
+//         // console.log(id);
+//         dispatch({
+//             type:PRODUCT_DETAILS_SUCCESS,
+//             payload:data.product,
+//         })
+//     }
+//     catch(error){
+//         dispatch({
+//             type:PRODUCT_DETAILS_FAIL,
+//             payload:error.response.data.message
+//         })
+//     }
+// }
 
 
 // Clearing Errors

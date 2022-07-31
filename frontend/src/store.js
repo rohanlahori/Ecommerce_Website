@@ -6,8 +6,11 @@ import { ProductDetailsReducer } from "./reducers/productReducer";
 
 const reudcer=combineReducers({
     products:ProductReducer,
-    productDetails:ProductDetailsReducer
+    productdetails:ProductDetailsReducer,
+    // producctdetails:ProductReducer,
+    // productDetails:ProductDetailsReducer
 });
+
 let initialState={};
 const middleware=[thunk];
 const store=createStore(

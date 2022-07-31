@@ -9,6 +9,7 @@ import React from 'react';
 import Footer from './component/layout/Footer/Footer'
 import Home from './component/Home/Home.js'
 import Loader from './component/layout/Loader/Loader';
+import ProductDetails from './component/Product/ProductDetails.jsx';
 
 function App() {
   React.useEffect(()=>{
@@ -23,6 +24,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/loader" element={<Loader />} />
+      <Route path="/product/:id" element={<ProductDetails/>}/>
     </Routes>
   </BrowserRouter>
   );

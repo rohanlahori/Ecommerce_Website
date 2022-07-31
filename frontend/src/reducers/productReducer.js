@@ -9,7 +9,9 @@ import {
 } from "../constants/productConstants";
 
 export const ProductReducer=(state=
-{products:[]},action)=>{
+{
+    products:[]},action)=>
+    {
 
     switch(action.type){
         case ALL_PRODUCT_REQUEST:
@@ -19,14 +21,14 @@ export const ProductReducer=(state=
         }
         case ALL_PRODUCT_SUCCESS:
         return{
-            loading:true,
+            loading:false,
             products:action.payload.products,
             productsCount:action.payload.productsCount
         }
         case ALL_PRODUCT_FAIL:
         return{
-            loading:true, 
-            product :action.payload
+            loading:false, 
+            error :action.payload
         }
         case CLEAR_ERRORS:
         return{
@@ -38,10 +40,12 @@ export const ProductReducer=(state=
     }
 }
 
-
-
-export const ProductDetailsReducer =(state=
-    {product:[]},action)=>{
+export const ProductDetailsReducer=(state=
+    {
+        product:{}
+    }
+    ,action)=>
+    {
     
         switch(action.type){
             case PRODUCT_DETAILS_REQUEST:
@@ -49,15 +53,15 @@ export const ProductDetailsReducer =(state=
                 loading:true,
                 ...state
             }
-            case ALL_PRODUCT_SUCCESS:
+            case PRODUCT_DETAILS_SUCCESS:
             return{
-                loading:true,
+                loading:false,
                 product:action.payload,
             }
-            case ALL_PRODUCT_FAIL:
+            case PRODUCT_DETAILS_FAIL:
             return{
-                loading:true, 
-                product :action.payload
+                loading:false, 
+                error:action.payload
             }
             case CLEAR_ERRORS:
             return{
@@ -68,4 +72,5 @@ export const ProductDetailsReducer =(state=
                 return state;
         }
     }
+    
     
