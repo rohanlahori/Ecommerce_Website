@@ -4,6 +4,7 @@ import { getProductDetails } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import React, { Fragment, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import Loader from "../layout/Loader/Loader";
 
 const ProductDetails = ({req}) => 
 {
@@ -18,23 +19,29 @@ const ProductDetails = ({req}) =>
 
   return (
     <Fragment>
-      <div className='ProductDetails'>
-        <div>
-          <Carousel>
-            {
-              product.images && product.images.map((item,i)=>(
-                <img 
-                className="CarouselImage"
-                key={item.url}
-                src={item.url}
-                alt={`${i} Slide`}
-                />
-              ))
-            }
-          </Carousel>
-          aaaa
+    {loading ?(
+      <Loader/>
+    ):
+    (
+      <Fragment>
+        <div className='ProductDetails'>
+          <div>
+            <Carousel>
+              {
+                product.images && product.images.map((item,i)=>(
+                  <img 
+                  className="CarouselImage"
+                  key={item.url}
+                  src={item.url}
+                  alt={`${i} Slide`}
+                  />
+                ))
+              }
+            </Carousel>
+          </div>
         </div>
-      </div>
+      </Fragment>
+    )}
     </Fragment>
   );
 }

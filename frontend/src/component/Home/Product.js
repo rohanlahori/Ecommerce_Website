@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 import ReactStars from "react-rating-stars-component"
-
+import Header from "../layout/Header/Header"
 
 const Product = ({product}) => {
     const options={
@@ -14,6 +14,7 @@ const Product = ({product}) => {
         
     }
   return (
+    <div>
     <Link className='productCard' to={`product/${product._id}`} >
         
         <img src={product.images[0].url} alt={product.name}></img>
@@ -23,7 +24,7 @@ const Product = ({product}) => {
         </div>
         <span>{`₹ ${product.price}`}</span>
     </Link>
-    
+    </div>
     )
 }
 
