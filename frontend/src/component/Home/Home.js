@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 
 const Home = () => {
+
     const dispatch=useDispatch();
     const {loading,error,products,productsCount}= 
     useSelector((state)=>state.products
@@ -16,6 +17,11 @@ const Home = () => {
         dispatch(getProduct());
     },[dispatch]);
   return (
+    <Fragment>
+    {loading ? (
+        <Loader/>
+    ):
+    (
             <Fragment>
             <MetaData title="Badminton Store"/>
             <div className="banner">
@@ -35,7 +41,10 @@ const Home = () => {
                 ))
             }
             </div>
-        </Fragment>    
+        </Fragment>  
+    )
+    }
+        </Fragment>  
   );
 };
 export default Home;
