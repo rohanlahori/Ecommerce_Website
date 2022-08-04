@@ -2,6 +2,7 @@
   "name": "my-app2",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http:localhost:4000",
   "dependencies": {
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
@@ -52,6 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://192.168.88.145:4000"
+  }
 }
