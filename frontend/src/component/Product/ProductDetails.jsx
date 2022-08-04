@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { Fragment, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import Loader from "../layout/Loader/Loader";
+import ReactStars from "react-rating-stars-component";
 
 const ProductDetails = ({req}) => 
 {
@@ -16,7 +17,14 @@ const ProductDetails = ({req}) =>
   useEffect(()=>{
       dispatch(getProductDetails(id));
   },[dispatch,id]);
-
+  const options ={
+    edit:false,
+    color:"rgba(20,20,20,0.1)",
+    activeColor:"tomato",
+    size:window.innerWidth<600 ? 20 :25,
+    value:product.ratings,
+    isHalf:true,
+  }
   return (
     <Fragment>
     {loading ?(
@@ -39,6 +47,37 @@ const ProductDetails = ({req}) =>
               }
             </Carousel>
           </div>
+          <div>
+           <div className="detailsblock-1">
+            <h2>{product.name}</h2>
+            <p>Product # {product._id}</p>
+            </div> 
+            <div className="detailsblock-2">
+              <ReactStars {...options}></ReactStars>
+              <span>({product.numOfReviews} Reviews)</span>
+            </div> 
+            <div className="detailsblock-3">
+              <h1>{`Rs ${product.price}`}</h1>
+              <div className="detailsblock-3-1">
+              <div className="detailsblock-3-1-1">
+                <button>-</button>
+                <input value="1" type="number"/>
+                <button>+</button>
+              </div>{" "}
+              <button>Add to Cart</button>
+              </div>
+              <p>
+                Status:{" "}
+                <b className={product.Stock <1 ? "redColor" : "greenColor"}>
+                  {product.stock<1 ? "Out of Stock" : "In stock"}
+                </b>
+              </p>
+            </div>
+          </div>
+         <div className="detailsBlock-4">
+          Description : <p>{product.description}</p>
+          </div> 
+          <button className="submitReview">Submit Review</button>
         </div>
       </Fragment>
     )}
