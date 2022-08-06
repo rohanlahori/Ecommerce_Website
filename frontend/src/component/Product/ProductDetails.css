@@ -6,14 +6,21 @@
     box-sizing: border-box;
     display: flex;
   }
-  #addtocart{
+  /* #addtocart{
     margin: 0;
     position: absolute;
     top: 60%;
     left: 60%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);  
-  }
+    background-color:tomato;
+    color: white;
+    width: auto;
+    border-radius:20px;
+    display: inline-block;
+    font-size: 16px;
+  
+  } */
   .CarouselImage {
     width: 40vmax;
     height: 30vmax;
@@ -165,7 +172,10 @@
     padding: 1rem;
     font: 300 1rem "Roboto";
   }
-  
+  .reviews{
+    display: flex;
+    overflow: auto;
+  }
   .reviewsHeading {
     color: #000000be;
     font: 500 1.4vmax "Roboto";
@@ -201,7 +211,7 @@
     font: 300 0.8vmax cursive;
   }
   
-  /*.noReviews {
+  .noReviews {
     font: 400 1.3vmax "Gill Sans";
     text-align: center;
     color: rgba(0, 0, 0, 0.548);
@@ -291,4 +301,4 @@
     .reviewCardComment {
       font: 300 5vw cursive;
     }
-  } */
+  }  

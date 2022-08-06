@@ -10,6 +10,8 @@ import Footer from './component/layout/Footer/Footer'
 import Home from './component/Home/Home.js'
 import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/Product/ProductDetails.jsx';
+import Products from './component/Product/Products.jsx';
+import Search from './component/Product/Search.jsx'
 
 function App() {
   React.useEffect(()=>{
@@ -21,11 +23,16 @@ function App() {
   },[]);
   return (
     <BrowserRouter>
+        <Header/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/loader" element={<Loader />} />
       <Route path="/product/:id" element={<ProductDetails/>}/>
+      <Route path="/products" element={<Products/>}/>
+      <Route path="/search" element={<Search/>}/>
+
     </Routes>
+    <Footer/>
   </BrowserRouter>
   );
 }
