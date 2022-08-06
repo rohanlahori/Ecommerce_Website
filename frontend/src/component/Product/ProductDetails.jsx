@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
 
+
 const ProductDetails = ({req}) => 
 {
   const dispatch=useDispatch();
@@ -34,11 +35,11 @@ const ProductDetails = ({req}) =>
       <Fragment>
         <div className='ProductDetails'>
           <div>
-            <Carousel>
+            <Carousel className="CarouselImage">
               {
                 product.images && product.images.map((item,i)=>(
                   <img 
-                  className="CarouselImage"
+                  
                   key={item.url}
                   src={item.url}
                   alt={`${i} Slide`}
@@ -54,35 +55,41 @@ const ProductDetails = ({req}) =>
             </div> 
             <div className="detailsblock-2">
               <ReactStars {...options}></ReactStars>
-              <span>({product.numOfReviews} Reviews)</span>
+              <span>({product.numberofReviews} Reviews)</span>
             </div> 
+
+
             <div className="detailsblock-3">
-              <h1>{`Rs ${product.price}`}</h1>
+              <h2>{`Rs ${product.price}`}</h2>
               <div className="detailsblock-3-1">
-              <div className="detailsblock-3-1-1">
+                <div className="detailsblock-3-1-1">
                 <button>-</button>
                 <input value="1" type="number"/>
                 <button>+</button>
-              </div>{" "}
-              <button>Add to Cart</button>
-              </div>
-              <p>
-                Status:{" "}
-                <b className={product.Stock <1 ? "redColor" : "greenColor"}>
-                  {product.stock<1 ? "Out of Stock" : "In stock"}
-                </b>
-              </p>
+                </div>{""}
+                <br></br>
+                <button id="addtocart">Add To Cart</button>
+                </div>
+                <br></br>
+                <p>
+                  Status:{" "}
+                  <b className={product.Stock<1 ? "redColor" : "greenColor"}></b>
+                  {product.Stock<1 ? "Out of Stock" : "In stock"}
+                </p>
             </div>
+            <div className="details-block-4">
+              <h4>Description : {product.description}</h4>
+            </div>
+            <button  className="submitreview">Submit Review</button>
           </div>
-         <div className="detailsBlock-4">
-          Description : <p>{product.description}</p>
-          </div> 
-          <button className="submitReview">Submit Review</button>
-        </div>
-      </Fragment>
+          </div>
+            </Fragment>
     )}
     </Fragment>
   );
 }
 
 export default ProductDetails;
+
+
+// 6 16
