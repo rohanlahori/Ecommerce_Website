@@ -34,6 +34,8 @@ const categories=[
 const dispatch=useDispatch();
 const [currentPage,setCurrentPage]=useState(1);  
 const [category,setCategory]=useState("")
+const [ratings,setRatings]=useState(0)
+
 console.log(currentPage)
 const {loading,error,products,productsCount,resultsPerPage}= 
 useSelector((state)=>state.products
@@ -44,8 +46,8 @@ setCurrentPage(e);
 };
 
   useEffect(()=>{
-      dispatch(getProduct(keyword,currentPage,price,category));
-  },[dispatch,keyword,currentPage,price,category]);
+      dispatch(getProduct(keyword,currentPage,price,category,ratings));
+  },[dispatch,keyword,currentPage,price,category,ratings]);
 
 
 
@@ -56,7 +58,7 @@ setCurrentPage(e);
     ):
     (
             <Fragment>
-                
+                <MetaData title="Products List"></MetaData>
             <h2 className="homeHeading">All Products</h2>
             <div className="products" id="container">  
             {
@@ -74,13 +76,14 @@ setCurrentPage(e);
                     getAriaLabel={() => 'Temperature range'}
                     value={price}
                     onChange={handleChange}
-                    valueLabelDisplay="auto"
+                    valueLabelDisplay="on"
                     getAriaValueText={valuetext}
                     min={0}
                     max={10000}
                     step={10}
                 />
                 </Box>
+                <br></br>
                 <h3>Categories</h3>
                 <ul className="categoryBox">
                     {categories.map((category)=>(
@@ -94,6 +97,20 @@ setCurrentPage(e);
                         
                     ))}
                 </ul>
+                <br/><br/>
+                <h3 className="ratings">Rating Above</h3>
+                <Slider
+                value={ratings}
+                onChange={(e,newRatings)=>{
+                    setRatings(newRatings)
+                }}
+                aria-labelledby="continuous-slider"
+                min={0}
+                max={5}
+                valueLabelDisplay="on"
+
+                >
+                </Slider>
             </div>
 
             <div className="paginationBox">

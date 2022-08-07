@@ -12,12 +12,12 @@ import {
 
 
 export const getProduct=(keyword="",currentpage=1,
-price=[0,10000],category)=> async(dispatch)=>{
+price=[0,10000],category,ratings=0)=> async(dispatch)=>{
     try{
         dispatch({
             type:ALL_PRODUCT_REQUEST
         });
-        let link=`/api/v1/products?keyword=${keyword}&page=${currentpage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+        let link=`/api/v1/products?keyword=${keyword}&page=${currentpage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
         
         if(category){
             link=`/api/v1/products?keyword=${keyword}&page=${currentpage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
