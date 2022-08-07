@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import { FaMouse } from "react-icons/fa";
-import ProductCard from '../Home/ProductCard.js'
 import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,29 +7,26 @@ import Loader from "../layout/Loader/Loader";
 import Pagination from "react-js-pagination"
 import { useState } from "react";
 import './Products.css'
-// import ProductCard from './ProductCard'
+import { useParams } from "react-router-dom";
+import ProductCard from '../Home/ProductCard'
 
  
-const Products = () => {
+const Products = ({match}) => 
+{
   const dispatch=useDispatch();
-//   const keyword=match.params.keyword
-  const [currentPage,setCurrentPage]=useState(1);
-  
+  const [currentPage,setCurrentPage]=useState(1);  
+  console.log(currentPage)
   const {loading,error,products,productsCount,resultsPerPage}= 
-  useSelector((state)=>state.products
+    useSelector((state)=>state.products
   );
-
-
+  const keyword=useParams().keyword;
   const setCurrentPageNo=(e)=>{
     setCurrentPage(e);
   };
-//   const setCurrentPageNo=setCurrentPageNo=(e)=>{
-//     setCurrentPage(e)
-//   }
 
   useEffect(()=>{
-      dispatch(getProduct());
-  },[dispatch]);
+      dispatch(getProduct(keyword,currentPage));
+  },[dispatch,keyword,currentPage]);
 
 
 
@@ -44,13 +40,13 @@ const Products = () => {
             <h2 className="homeHeading">All Products</h2>
             <div className="container" id="container">  
             {
-                products && products.map((product,index)=>(
-                    <ProductCard product={product}key={index}/>
+                products && products.map((product)=>(
+                    <ProductCard key={product._id} product={product} />
                 ))
             }
             </div>
             <div className="paginationBox">
-                <Pagination
+                {/* <Pagination
                     activePage={currentPage}
                     itemsCountPerPage={resultsPerPage}
                     totalItemsCount={productsCount}
@@ -64,7 +60,7 @@ const Products = () => {
                     activeClass="pageItemActive"
                     activeLinkClass="pageLinkActive"
                 
-                />
+                /> */}
             </div>
 
         </Fragment>  
