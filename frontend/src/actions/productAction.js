@@ -11,13 +11,21 @@ import {
 } from "../constants/productConstants";
 
 
-export const getProduct=(keyword="",currentpage=1)=> async(dispatch)=>{
+export const getProduct=(keyword="",currentpage=1,
+price=[0,10000],category)=> async(dispatch)=>{
     try{
         dispatch({
             type:ALL_PRODUCT_REQUEST
         });
-        const {data}=await axios.get(`/api/v1/products?keyword=${keyword}&page=${currentpage}`)
-        console.log(data);
+        let link=`/api/v1/products?keyword=${keyword}&page=${currentpage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
+        
+        if(category){
+            link=`/api/v1/products?keyword=${keyword}&page=${currentpage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}`
+        }
+        const {data}=await axios.get(link)
+        if(category){
+
+        }
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:data,
