@@ -5,17 +5,35 @@ import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
+import Pagination from "react-js-pagination"
+import { useState } from "react";
+import './Products.css'
 // import ProductCard from './ProductCard'
 
  
 const Products = () => {
   const dispatch=useDispatch();
-  const {loading,error,products,productsCount}= 
+//   const keyword=match.params.keyword
+  const [currentPage,setCurrentPage]=useState(1);
+  
+  const {loading,error,products,productsCount,resultsPerPage}= 
   useSelector((state)=>state.products
   );
+
+
+  const setCurrentPageNo=(e)=>{
+    setCurrentPage(e);
+  };
+//   const setCurrentPageNo=setCurrentPageNo=(e)=>{
+//     setCurrentPage(e)
+//   }
+
   useEffect(()=>{
       dispatch(getProduct());
   },[dispatch]);
+
+
+
   return (
     <Fragment>
     {loading ? (
@@ -31,6 +49,24 @@ const Products = () => {
                 ))
             }
             </div>
+            <div className="paginationBox">
+                <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultsPerPage}
+                    totalItemsCount={productsCount}
+                    onChange={setCurrentPageNo} 
+                    nextPageText="Next"
+                    prevPageText="Prev"
+                    firstPageText="1"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                
+                />
+            </div>
+
         </Fragment>  
     )
     }
