@@ -12,6 +12,8 @@ import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/Product/ProductDetails.jsx';
 import Products from './component/Product/Products.jsx';
 import Search from './component/Product/Search.jsx'
+import LoginSignUp from './component/User/LoginSignUp';
+
 
 function App() {
   React.useEffect(()=>{
@@ -21,6 +23,7 @@ function App() {
       },
     });
   },[]);
+ 
   return (
     <BrowserRouter>
         <Header/>
@@ -30,9 +33,9 @@ function App() {
       <Route path="/product/:id" element={<ProductDetails/>}/>
       <Route path="/products" element={<Products/>}/>
       <Route path="/search" element={<Search/>}/>
-
+      <Route path="/login" element={<LoginSignUp/>}></Route>
     </Routes>
-    <Footer/>
+    {/* <Footer/> */}
   </BrowserRouter>
   );
 }
