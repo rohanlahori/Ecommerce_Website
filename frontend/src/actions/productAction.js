@@ -11,8 +11,8 @@ import {
 } from "../constants/productConstants";
 
 
-export const getProduct=(keyword="",currentpage=1,
-price=[0,10000],category,ratings=0)=> async(dispatch)=>{
+export const getProduct=(keyword="",currentpage=1,price=[0,10000],category,ratings=0)=> 
+async(dispatch)=>{
     try{
         dispatch({
             type:ALL_PRODUCT_REQUEST
@@ -57,26 +57,6 @@ export const getProductDetails=(id)=> async(dispatch)=>{
         })
     }
 }
-
-// export const getProductDetails=(id)=> async(dispatch)=>{
-//     try{
-//         dispatch({
-//             type:PRODUCT_DETAILS_REQUEST
-//         });
-//         const {data}=await axios.get(`/api/v1/products${id}`)
-//         // console.log(id);
-//         dispatch({
-//             type:PRODUCT_DETAILS_SUCCESS,
-//             payload:data.product,
-//         })
-//     }
-//     catch(error){
-//         dispatch({
-//             type:PRODUCT_DETAILS_FAIL,
-//             payload:error.response.data.message
-//         })
-//     }
-// }
 
 
 // Clearing Errors
