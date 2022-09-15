@@ -14,17 +14,19 @@ import{
 
 
 export const login=(email,password)=>async(dispatch)=>{
+    console.log({email,password})
     try{
         dispatch({type:LOGIN_REQUEST});
         const config={headers: {"Content-Type":"application/json"}}
-        const data=await axios.post(
+        const {data}=await axios.post(
             '/api/v1/login',
             {email,password},
             config
         );
+        console.log(10111)
         dispatch({
             type:LOGIN_SUCCESS,
-            payload:data
+            payload:data.user   
         })
     }
     catch(error){

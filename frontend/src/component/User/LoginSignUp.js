@@ -1,6 +1,6 @@
 import {React,Fragment,useRef,useEffect} from 'react'
 import "./LoginSignUp.css"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { useState } from 'react'
 import MailOutlineIcon from "@mui/icons-material/MailOutline"
 import LockOpenIcon from "@mui/icons-material/LockOpen"
@@ -11,7 +11,7 @@ import Loader from "../layout/Loader/Loader";
 
 // use Ref is used to access Dom elements in react
 const LoginSignUp = () => {
-
+    const navigate=useNavigate()
     const dispatch=useDispatch();
     const{error,loading,isAuthenticated}=useSelector(state=>state.user)
     const loginTab=useRef(null);
@@ -69,7 +69,11 @@ const LoginSignUp = () => {
             console.log("error check")
             dispatch(clear_Errors());
         }
-    },[dispatch,error]);
+        if(isAuthenticated)
+        {
+            navigate("/account")
+        }
+    },[dispatch,error,isAuthenticated]);
     const switchTabs=(e,tab)=>{
         console.log(switcherTab);
         if(tab ==="login")
