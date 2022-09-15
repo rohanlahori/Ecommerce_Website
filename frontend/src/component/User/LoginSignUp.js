@@ -5,7 +5,7 @@ import { useState } from 'react'
 import MailOutlineIcon from "@mui/icons-material/MailOutline"
 import LockOpenIcon from "@mui/icons-material/LockOpen"
 import FaceIcon from "@mui/icons-material/Face"
-import { clear_Errors, login} from '../../actions/userAction'
+import { clear_Errors, login,register} from '../../actions/userAction'
 import {useDispatch,useSelector} from "react-redux"
 import Loader from "../layout/Loader/Loader"; 
 
@@ -25,6 +25,9 @@ const LoginSignUp = () => {
     const {name,email,password}=user;
     const [loginEmail,setLoginEmail]=useState("");
     const [loginPassword,setLoginPassword]=useState("");
+    const [registerEmail,setregisterEmail]=useState("");
+    const [registerPassword,setregisterPassword]=useState("");
+    const [registerName,setregisterName]=useState("");
     const [Avatar,setAvatar]=useState("")    
     const [AvatarPreview,setAvatarPreview]=useState("/Profile.png")
 
@@ -35,12 +38,13 @@ const LoginSignUp = () => {
     
     const registerSubmit=(e)=>{
         e.preventDefault();
-        const myForm=new FormData();
-        myForm.set("name",name);
-        myForm.set("email",email);
-        myForm.set("password",password);
-        myForm.set("Avatar",Avatar);
-        console.log("Sign up Submitted")   
+        // const myForm=new FormData();
+        // myForm.set("name",name);
+        // myForm.set("email",email);
+        // myForm.set("password",password);
+        // myForm.set("Avatar",Avatar);
+        // console.log("Sign up Submitted")   
+        dispatch(register(registerName,registerEmail,registerPassword))
     }
     
     
@@ -74,6 +78,7 @@ const LoginSignUp = () => {
             navigate("/account")
         }
     },[dispatch,error,isAuthenticated]);
+    
     const switchTabs=(e,tab)=>{
         console.log(switcherTab);
         if(tab ==="login")
@@ -148,8 +153,8 @@ const LoginSignUp = () => {
                         placeholder='Name'
                         required
                         name="name"
-                        value={name}
-                        onChange={registerDataChange}
+                        value={registerName}
+                        onChange={(e) => setregisterName(e.target.value)}
                         >
                         </input>
                     </div>
@@ -160,8 +165,8 @@ const LoginSignUp = () => {
                         placeholder='Email'
                         required
                         name="email"
-                        value={email}
-                        onChange={registerDataChange}
+                        value={registerEmail}
+                        onChange={(e) => setregisterEmail(e.target.value)}
                         >
                         </input>
                     </div>
@@ -172,8 +177,8 @@ const LoginSignUp = () => {
                         placeholder='Password'
                         required
                         name="password"
-                        value={password}
-                        onChange={registerDataChange}
+                        value={registerPassword}
+                        onChange={(e) => setregisterPassword(e.target.value)}
                         >
                         </input>
                     </div>
@@ -183,7 +188,7 @@ const LoginSignUp = () => {
                         type="file"
                         name="avatar"
                         accept='image/*'
-                        onChange={registerDataChange}
+                        // onChange={registerDataChange}
                         >
                         </input>
                     </div>
