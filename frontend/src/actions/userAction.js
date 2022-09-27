@@ -9,7 +9,10 @@ import{
     REGISTER_FAIL,
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    LOAD_USER_REQUEST,
+    LOAD_USER_SUCCESS,
+    LOAD_USER_FAIL
 } from "../constants/userConstant";
 
 
@@ -65,6 +68,26 @@ export const register=(name,email,password)=>async(dispatch)=>{
     }
 };
 
+
+// Load User
+
+export const loadUser=()=>async(dispatch)=>{
+    try{
+        dispatch({type:LOAD_USER_REQUEST});
+        const config={headers: {"Content-Type":"application/json"}}
+        const {data}=await axios.get('/api/v1/me',);
+        dispatch({
+            type:LOAD_USER_SUCCESS,
+            payload:data.user   
+        })
+    }
+    catch(error){
+        dispatch({
+            type:LOAD_USER_FAIL,
+            payload:error.response.data.message
+        })
+    }
+};
 
 export const clear_Errors =()=> async(dispatch)=>{
     dispatch({
