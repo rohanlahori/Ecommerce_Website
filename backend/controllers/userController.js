@@ -10,12 +10,20 @@ const crypto=require('crypto');
 // Register a user
 exports.registerUser=catchAsyncErrors(async(req,res,next)=>{
     const {name,email,password}=req.body;
+
+    // const myCloud=await cloudinary.v2.uploader(req.body.avatar,{
+    //     folder:"samples",
+    //     width:20,
+    //     crop:"scale"
+    // })
+
+    console.log({name,email,password})
     const user=await User.create({
         name,email,password,
-        avatar:{
-            public_id:"this is a sample id",
-            url:"profilepic"
-        }
+        // avatar:{
+        //     public_id:myCloud.public_id,
+        //     url:myCloud.secure_url
+        // }
     });
 
     // Passing the token as a cookie

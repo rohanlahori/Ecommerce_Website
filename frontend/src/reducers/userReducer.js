@@ -1,4 +1,13 @@
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,CLEAR_ERRORS, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAIL} from "../constants/userConstant"
+import { LOGIN_FAIL, 
+    LOGIN_REQUEST, 
+    LOGIN_SUCCESS,
+    CLEAR_ERRORS, 
+    REGISTER_REQUEST, 
+    REGISTER_SUCCESS, 
+    REGISTER_FAIL
+}
+from "../constants/userConstant"
+
 
 export const userReducer=(state={user:[]},action)=>
 {

@@ -38,12 +38,6 @@ const LoginSignUp = () => {
     
     const registerSubmit=(e)=>{
         e.preventDefault();
-        // const myForm=new FormData();
-        // myForm.set("name",name);
-        // myForm.set("email",email);
-        // myForm.set("password",password);
-        // myForm.set("Avatar",Avatar);
-        // console.log("Sign up Submitted")   
         dispatch(register(registerName,registerEmail,registerPassword))
     }
     
@@ -67,11 +61,14 @@ const LoginSignUp = () => {
         }
     }
 
+
+
     useEffect(()=>{
         if(error)
         {
-            console.log("error check")
+            alert((error));
             dispatch(clear_Errors());
+            navigate("/login")
         }
         if(isAuthenticated)
         {
@@ -182,7 +179,7 @@ const LoginSignUp = () => {
                         >
                         </input>
                     </div>
-                    <div className='registerImage'>
+                    {/* <div className='registerImage'>
                         <img src={AvatarPreview} alt="Avatar Preview"></img>
                         <input
                         type="file"
@@ -191,7 +188,7 @@ const LoginSignUp = () => {
                         // onChange={registerDataChange}
                         >
                         </input>
-                    </div>
+                    </div> */}
                     <input type="submit" value="Register" className='signUpBtn'></input>
                 </form>
             </div>

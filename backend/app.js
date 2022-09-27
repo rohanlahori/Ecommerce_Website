@@ -6,7 +6,11 @@ const theFunc=require('./middleware/catchAsyncErrors')
 const user=require('./routes/userRoutes')
 const cookieParser=require('cookie-parser')
 const order=require('./routes/orderRoutes')
+const bodyParser=require("body-parser")
+const fileUpload=require("express-fileupload")
 
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(fileUpload())
 app.use(express.json())
 app.get('/', (req,res)=>{res.send("OK");})
 
