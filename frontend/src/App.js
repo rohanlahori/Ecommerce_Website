@@ -13,7 +13,9 @@ import ProductDetails from './component/Product/ProductDetails.jsx';
 import Products from './component/Product/Products.jsx';
 import Search from './component/Product/Search.jsx'
 import LoginSignUp from './component/User/LoginSignUp';
-
+import Navigate from "./component/Header/navigation_bar"
+import store from "./store"
+import { loadUser } from './actions/userAction';
 
 function App() {
   React.useEffect(()=>{
@@ -22,20 +24,22 @@ function App() {
         families:["Roboto"],
       },
     });
+    // store.dispatch(loadUser())
   },[]);
  
   return (
     <BrowserRouter>
-        <Header/>
+        <Navigate/>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/navigationbar" element={<Navigate/>} />
       <Route path="/loader" element={<Loader />} />
       <Route path="/product/:id" element={<ProductDetails/>}/>
       <Route path="/products" element={<Products/>}/>
       <Route path="/search" element={<Search/>}/>
       <Route path="/login" element={<LoginSignUp/>}></Route>
     </Routes>
-    {/* <Footer/> */}
+    <Footer/>
   </BrowserRouter>
   );
 }
