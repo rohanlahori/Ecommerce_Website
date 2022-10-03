@@ -153,9 +153,7 @@ const ResponsiveAppBar = () => {
           :
           <Button variant="contained"  onClick={() => navigator("/login")}>Login</Button>
         }
-        <div>
-          <h3>Welcome</h3>
-        </div>
+        
         <Button variant="conatined" >Cart
         <ShoppingCartIcon></ShoppingCartIcon>
         </Button>
