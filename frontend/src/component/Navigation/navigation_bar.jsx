@@ -25,7 +25,7 @@ import { useSelector } from 'react-redux';
 import {useState} from "react"
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../actions/productAction";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const pages = ['Laptop','Rackets', 'String', 'Bags', "Apparels","Clothes"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -180,6 +180,9 @@ useEffect(()=>{
         }
         <Button variant="conatined" >Cart
         <ShoppingCartIcon></ShoppingCartIcon></Button>
+        <Button variant="conatined" ><h4>Profile</h4>
+        <AccountCircleIcon/>
+        </Button>
         </Toolbar>
       </AppBar> 
       </Box>

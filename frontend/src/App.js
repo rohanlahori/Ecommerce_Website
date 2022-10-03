@@ -19,10 +19,8 @@ import { loadUser, login } from './actions/userAction';
 import UserOptions from './component/layout/Header/UserOptions.js'
 import { useSelect } from '@mui/base';
 import {useSelector} from "react-redux"
-
-
+import {Profile} from "./component/User/Profile.js"
 function App() {
-
   React.useEffect(()=>{
     WebFont.load({
       google:{
@@ -46,6 +44,7 @@ function App() {
       <Route path="/products" element={<Products/>}/>
       <Route path="/search" element={<Search/>}/>
       <Route path="/login" element={<LoginSignUp/>}></Route>
+      <Route exact path="/profile" element={<Profile/>}></Route>
     </Routes>
     {/* <Footer/> */}
   </BrowserRouter>
