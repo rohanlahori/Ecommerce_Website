@@ -21,7 +21,7 @@ import store from "../../store"
 import {useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+
 
 
 const pages = ['Home', 'Products', 'Contact', "About"];
@@ -29,7 +29,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 const ResponsiveAppBar = () => {
-  const{user,isAuthenticated}=useSelector(state=>state.user)
+  const{isAuthenticated}=useSelector(state=>state.user)
   console.log(isAuthenticated)
 
   const dispatch=useDispatch()
@@ -147,17 +147,15 @@ const ResponsiveAppBar = () => {
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>
+        if(!isAuthenticated)
         {
-          isAuthenticated ?
-          <Button  variant="contained" onClick={() =>dispatch(logout())}>Logout</Button>
-          :
           <Button variant="contained"  onClick={() => navigator("/login")}>Login</Button>
         }
-        
+        else{
+          <Button variant="contained" onClick={() =>dispatch(logout())}>Logout</Button>
+        }
         <Button variant="conatined" >Cart
-        <ShoppingCartIcon></ShoppingCartIcon>
-        </Button>
-        <AccountBoxIcon fontSize='large'/>
+        <ShoppingCartIcon></ShoppingCartIcon></Button>
         </Toolbar>
       </AppBar> 
       </Box>
