@@ -12,7 +12,9 @@ import{
     CLEAR_ERRORS,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
-    LOAD_USER_FAIL
+    LOAD_USER_FAIL,
+    LOGOUT_FAIL,
+    LOGOUT_SUCCESS
 } from "../constants/userConstant";
 
 
@@ -25,7 +27,7 @@ export const login=(email,password)=>async(dispatch)=>{
         dispatch({type:LOGIN_REQUEST});
         const config={headers: {"Content-Type":"application/json"}}
         const {data}=await axios.post(
-            '/api/v1/login',
+            `/api/v1/login`,
             {email,password},
             config
         );
@@ -51,7 +53,7 @@ export const register=(name,email,password)=>async(dispatch)=>{
         const config={headers: {"Content-Type":"application/json"}}
         console.log({name,email,password})
         const {data}=await axios.post(
-            '/api/v1/register',
+            `/api/v1/register`,
             {name,email,password},
             config
         );
@@ -70,15 +72,15 @@ export const register=(name,email,password)=>async(dispatch)=>{
 
 
 // Load User
-
 export const loadUser=()=>async(dispatch)=>{
     try{
         dispatch({type:LOAD_USER_REQUEST});
-        const config={headers: {"Content-Type":"application/json"}}
-        const {data}=await axios.get('/api/v1/me');
+
+        const {data}=await axios.get(`/api/v1/me`)
+        console.log(data)
         dispatch({
             type:LOAD_USER_SUCCESS,
-            payload:data.user   
+            payload:data.user
         })
     }
     catch(error){
@@ -88,6 +90,28 @@ export const loadUser=()=>async(dispatch)=>{
         })
     }
 };
+
+
+
+// Logout User
+
+export const logout=()=>async(dispatch)=>{
+    console.log("Logout Successful");
+    try{
+        await axios.get(`/api/v1/logout`);
+        alert("Logout Successful")
+        dispatch({
+            type:LOGOUT_SUCCESS,
+        })
+    }
+    catch(error){
+        dispatch({
+            type:LOGOUT_FAIL,
+            payload:error.response.data.message
+        })
+    }
+};
+
 
 export const clear_Errors =()=> async(dispatch)=>{
     dispatch({

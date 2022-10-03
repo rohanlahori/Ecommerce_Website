@@ -15,14 +15,31 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { logout,login } from '../../actions/userAction';
+import store from "../../store"
+import {useNavigate} from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 
 
 const pages = ['Home', 'Products', 'Contact', "About"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+
 const ResponsiveAppBar = () => {
+  const{isAuthenticated}=useSelector(state=>state.user)
+  console.log(isAuthenticated)
+
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const navigator= (path)=>{
+    navigate(path)
+  }
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const [isAuthenticated]=useSelector(state=>state.user)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -130,9 +147,15 @@ const ResponsiveAppBar = () => {
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>
-
-        <Button variant="contained">Login</Button>
-
+        if(!isAuthenticated)
+        {
+          <Button variant="contained"  onClick={() => navigator("/login")}>Login</Button>
+        }
+        else{
+          <Button variant="contained" onClick={() =>dispatch(logout())}>Logout</Button>
+        }
+        <Button variant="conatined" >Cart
+        <ShoppingCartIcon></ShoppingCartIcon></Button>
         </Toolbar>
       </AppBar> 
       </Box>

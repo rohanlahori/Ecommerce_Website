@@ -9,6 +9,7 @@ import { clear_Errors, login,register} from '../../actions/userAction'
 import {useDispatch,useSelector} from "react-redux"
 import Loader from "../layout/Loader/Loader"; 
 
+
 // use Ref is used to access Dom elements in react
 const LoginSignUp = () => {
     const navigate=useNavigate()
@@ -66,13 +67,14 @@ const LoginSignUp = () => {
     useEffect(()=>{
         if(error)
         {
+            console.log(error)
             alert((error));
             dispatch(clear_Errors());
             navigate("/login")
         }
         if(isAuthenticated)
         {
-            navigate("/account")
+            navigate("/products")
         }
     },[dispatch,error,isAuthenticated]);
 

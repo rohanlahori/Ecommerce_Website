@@ -13,23 +13,31 @@ import ProductDetails from './component/Product/ProductDetails.jsx';
 import Products from './component/Product/Products.jsx';
 import Search from './component/Product/Search.jsx'
 import LoginSignUp from './component/User/LoginSignUp';
-import Navigate from "./component/Header/navigation_bar"
+import Navigate from "./component/Navigation/navigation_bar"
 import store from "./store"
-import { loadUser } from './actions/userAction';
+import { loadUser, login } from './actions/userAction';
+import UserOptions from './component/layout/Header/UserOptions.js'
+import { useSelect } from '@mui/base';
+import {useSelector} from "react-redux"
+
 
 function App() {
+
   React.useEffect(()=>{
     WebFont.load({
       google:{
         families:["Roboto"],
       },
     });
-    // store.dispatch(loadUser())
+    store.dispatch(loadUser())
   },[]);
- 
+  const {isAuthenticated,user}=useSelector(state=>state.user)
+  console.log(user);
   return (
     <BrowserRouter>
+    {/* <Header/>    */}
         <Navigate/>
+        {isAuthenticated && <UserOptions user={user}/>}
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/navigationbar" element={<Navigate/>} />
@@ -39,7 +47,7 @@ function App() {
       <Route path="/search" element={<Search/>}/>
       <Route path="/login" element={<LoginSignUp/>}></Route>
     </Routes>
-    <Footer/>
+    {/* <Footer/> */}
   </BrowserRouter>
   );
 }
