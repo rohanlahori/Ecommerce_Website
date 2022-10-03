@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,17 +22,18 @@ import store from "../../store"
 import {useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import {useState} from "react"
+import { useParams } from "react-router-dom";
+import { getProduct } from "../../actions/productAction";
 
 
-
-const pages = ['Home', 'Products', 'Contact', "About"];
+const pages = ['Laptop','Rackets', 'String', 'Bags', "Apparels","Clothes"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 const ResponsiveAppBar = () => {
   const{isAuthenticated}=useSelector(state=>state.user)
   console.log(isAuthenticated)
-
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const navigator= (path)=>{
@@ -95,7 +97,29 @@ const ResponsiveAppBar = () => {
       },
     },
   }));
-  
+
+const [price, setPrice] = useState([0,2000]);
+const handleChange = (price, newPrice) => {
+setPrice(newPrice);
+}
+const [currentPage,setCurrentPage]=useState(1);  
+const [category,setCategory]=useState("")
+console.log(category)
+const [ratings,setRatings]=useState(0)
+const {loading,error,products,productsCount,resultsPerPage}= 
+useSelector((state)=>state.products
+);
+const keyword=useParams().keyword;
+const setCurrentPageNo=(e)=>{
+setCurrentPage(e);
+};
+
+
+useEffect(()=>{
+    dispatch(getProduct(keyword,currentPage,price,category,ratings));
+},[dispatch,keyword,currentPage,price,category,ratings]);
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
@@ -131,10 +155,11 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                // onClick={handleCloseNavMenu}
+                onClick={()=>setCategory(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <h3>{page}</h3>
               </Button>
             ))}
           </Box>
@@ -147,12 +172,11 @@ const ResponsiveAppBar = () => {
             inputProps={{ 'aria-label': 'search' }}
           />
         </Search>
-        if(!isAuthenticated)
         {
+          isAuthenticated ?
+          <Button  variant="contained" onClick={() =>dispatch(logout())}>Logout</Button>
+          :
           <Button variant="contained"  onClick={() => navigator("/login")}>Login</Button>
-        }
-        else{
-          <Button variant="contained" onClick={() =>dispatch(logout())}>Logout</Button>
         }
         <Button variant="conatined" >Cart
         <ShoppingCartIcon></ShoppingCartIcon></Button>

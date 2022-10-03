@@ -23,6 +23,8 @@ const Products = ({match}) =>
     const handleChange = (price, newPrice) => {
     setPrice(newPrice);
 };
+
+
 const categories=[
     "Laptop",
     "Phone",
@@ -36,7 +38,7 @@ const [currentPage,setCurrentPage]=useState(1);
 const [category,setCategory]=useState("")
 const [ratings,setRatings]=useState(0)
 
-console.log(currentPage)
+
 const {loading,error,products,productsCount,resultsPerPage}= 
 useSelector((state)=>state.products
 );
@@ -45,10 +47,10 @@ const setCurrentPageNo=(e)=>{
 setCurrentPage(e);
 };
 
-  useEffect(()=>{
-      dispatch(getProduct(keyword,currentPage,price,category,ratings));
-  },[dispatch,keyword,currentPage,price,category,ratings]);
 
+useEffect(()=>{
+    dispatch(getProduct(keyword,currentPage,price,category,ratings));
+},[dispatch,keyword,currentPage,price,category,ratings]);
 
 
   return (
