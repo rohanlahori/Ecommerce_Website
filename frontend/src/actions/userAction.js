@@ -14,7 +14,11 @@ import{
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
     LOGOUT_FAIL,
-    LOGOUT_SUCCESS
+    LOGOUT_SUCCESS,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_RESET,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_FAIL
 } from "../constants/userConstant";
 
 
@@ -113,10 +117,36 @@ export const logout=()=>async(dispatch)=>{
 };
 
 
+
+// Update Profile
+export const updateprofile=(updateProfileName,updateProfileEmail)=>async(dispatch)=>{
+    try{
+        dispatch({type:UPDATE_PROFILE_REQUEST});
+        const config={headers: {"Content-Type":"application/json"}}
+        console.log({updateProfileName,updateProfileEmail});
+        const {data}=await axios.put(
+            `/api/v1/me/update`,
+            {updateProfileName,updateProfileEmail},
+            config
+        );
+        console.log(data);
+        dispatch({
+            type:UPDATE_PROFILE_SUCCESS,
+            payload:data.user   
+        })
+    }
+    catch(error){
+        dispatch({
+            type:UPDATE_PROFILE_FAIL,
+            payload:error.response.data.message
+        })
+    }
+};
+
+
 export const clear_Errors =()=> async(dispatch)=>{
     dispatch({
         type:CLEAR_ERRORS
     })
 }
 
-// 7 56

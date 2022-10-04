@@ -20,6 +20,8 @@ import UserOptions from './component/layout/Header/UserOptions.js'
 import { useSelect } from '@mui/base';
 import {useSelector} from "react-redux"
 import {Profile} from "./component/User/Profile.js"
+import {UpdateProfile} from "./component/User/UpdateProfile.js"
+
 function App() {
   React.useEffect(()=>{
     WebFont.load({
@@ -36,16 +38,17 @@ function App() {
     {/* <Header/>    */}
         <Navigate/>
         {isAuthenticated && <UserOptions user={user}/>}
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/navigationbar" element={<Navigate/>} />
-      <Route path="/loader" element={<Loader />} />
-      <Route path="/product/:id" element={<ProductDetails/>}/>
-      <Route path="/products" element={<Products/>}/>
-      <Route path="/search" element={<Search/>}/>
-      <Route path="/login" element={<LoginSignUp/>}></Route>
-      <Route exact path="/profile" element={<Profile/>}></Route>
-    </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/navigationbar" element={<Navigate/>} />
+          <Route path="/loader" element={<Loader />} />
+          <Route path="/product/:id" element={<ProductDetails/>}/>
+          <Route path="/products" element={<Products/>}/>
+          <Route path="/search" element={<Search/>}/>
+          <Route path="/login" element={<LoginSignUp/>}></Route>
+          <Route exact path="/account" element={<Profile/>}></Route>
+          <Route exact path="/me/update" element={<UpdateProfile/>}></Route>
+      </Routes>
     {/* <Footer/> */}
   </BrowserRouter>
   );

@@ -74,7 +74,7 @@ const LoginSignUp = () => {
         }
         if(isAuthenticated)
         {
-            navigate("/products")
+            navigate("/account")
         }
     },[dispatch,error,isAuthenticated]);
 
@@ -181,16 +181,6 @@ const LoginSignUp = () => {
                         >
                         </input>
                     </div>
-                    {/* <div className='registerImage'>
-                        <img src={AvatarPreview} alt="Avatar Preview"></img>
-                        <input
-                        type="file"
-                        name="avatar"
-                        accept='image/*'
-                        // onChange={registerDataChange}
-                        >
-                        </input>
-                    </div> */}
                     <input type="submit" value="Register" className='signUpBtn'></input>
                 </form>
             </div>

@@ -180,7 +180,7 @@ useEffect(()=>{
         }
         <Button variant="conatined" >Cart
         <ShoppingCartIcon></ShoppingCartIcon></Button>
-        <Button variant="conatined" ><h4>Profile</h4>
+        <Button variant="conatined"  onClick={() => navigator("/account")}><h4>Profile</h4>
         <AccountCircleIcon/>
         </Button>
         </Toolbar>

@@ -3,12 +3,13 @@ import thunk from "redux-thunk"
 import {composeWithDevTools} from "redux-devtools-extension"
 import { ProductReducer } from "./reducers/productReducer";
 import { ProductDetailsReducer } from "./reducers/productReducer";
-import { userReducer } from "./reducers/userReducer";
+import { profileReducer, userReducer } from "./reducers/userReducer";
 
 const reudcer=combineReducers({
     products:ProductReducer,
     productdetails:ProductDetailsReducer,
-    user:userReducer
+    user:userReducer,
+    profile:profileReducer
     // producctdetails:ProductReducer,
     // productDetails:ProductDetailsReducer
 });

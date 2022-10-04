@@ -36,10 +36,10 @@ export const Profile = ({  }) => {
                 <h4>Email</h4>
                 <p>{user.email}</p>
               </div>
-              <div>
+              {/* <div>
                 <h4>Joined On</h4>
                 <p>{String(user.createdAt).substr(0, 10)}</p>
-              </div>
+              </div> */}
 
               <div>
                 <Link to="/orders">My Orders</Link>
