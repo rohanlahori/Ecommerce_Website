@@ -5,13 +5,14 @@ import { useState } from 'react'
 import MailOutlineIcon from "@mui/icons-material/MailOutline"
 import LockOpenIcon from "@mui/icons-material/LockOpen"
 import FaceIcon from "@mui/icons-material/Face"
-import { clear_Errors, login,register, updateprofile} from '../../actions/userAction'
+import { clear_Errors, loadUser, login,register, updateprofile} from '../../actions/userAction'
 import {useDispatch,useSelector} from "react-redux"
 import Loader from "../layout/Loader/Loader"; 
+import { UPDATE_PROFILE_RESET } from '../../constants/userConstant'
 
 
 // use Ref is used to access Dom elements in react
-export const UpdateProfile = () => {
+export default function UpdateProfile (){
     const navigate=useNavigate()
     const dispatch=useDispatch();
     const{error,isUpdated,loading}=useSelector(state=>state.profile)
@@ -35,11 +36,17 @@ export const UpdateProfile = () => {
             alert((error));
             dispatch(clear_Errors());
         }
-        if(isAuthenticated)
+        if(isUpdated)
         {
-            navigate("/me/update")
+            alert("Profile Updated Successfully");
+            dispatch(loadUser())
+            navigate("/account")
+
+            dispatch({
+                type:UPDATE_PROFILE_RESET
+            });
         }
-    },[dispatch,error,isAuthenticated]);
+    },[dispatch,error,isUpdated,user]);
 
   return (
     <Fragment>

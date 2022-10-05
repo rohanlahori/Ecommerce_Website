@@ -163,18 +163,20 @@ exports.updatePassword=catchAsyncErrors(async(req,res,next)=>{
     sendToken(user,200,res);
 });
 
+
+
 // Update User Porfile
 exports.updateProfile=catchAsyncErrors(async(req,res,next)=>{
-    
-
+    console.log(req.body);
     const newUserData={
-        name:req.body.name,
-        email:req.body.email
+        name:req.body.updateProfileName,
+        email:req.body.updateProfileEmail
     }
-
     const user=await User.findById(req.user.id);
+    console.log(newUserData.name);
     user.name=newUserData.name;
     user.email=newUserData.email;
+   
 
 
 

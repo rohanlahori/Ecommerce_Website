@@ -18,7 +18,11 @@ import{
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_RESET,
     UPDATE_PROFILE_SUCCESS,
-    UPDATE_PROFILE_FAIL
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PASSWORD_RESET,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PASSWORD_REQUEST
 } from "../constants/userConstant";
 
 
@@ -122,7 +126,7 @@ export const logout=()=>async(dispatch)=>{
 export const updateprofile=(updateProfileName,updateProfileEmail)=>async(dispatch)=>{
     try{
         dispatch({type:UPDATE_PROFILE_REQUEST});
-        const config={headers: {"Content-Type":"application/json"}}
+        const config={headers: {"Content-Type":"multipart/form-data"}}
         console.log({updateProfileName,updateProfileEmail});
         const {data}=await axios.put(
             `/api/v1/me/update`,
@@ -132,12 +136,40 @@ export const updateprofile=(updateProfileName,updateProfileEmail)=>async(dispatc
         console.log(data);
         dispatch({
             type:UPDATE_PROFILE_SUCCESS,
-            payload:data.user   
+            payload:data.success  
         })
     }
     catch(error){
         dispatch({
             type:UPDATE_PROFILE_FAIL,
+            payload:error.response.data.message
+        })
+    }
+};
+
+
+
+
+export const updatepassword=(password)=>async(dispatch)=>{
+    console.log(password)
+    try{
+        dispatch({type:UPDATE_PASSWORD_REQUEST});
+        const config={headers: {"Content-Type":"application/json"}}
+
+        const {data}=await axios.put(
+            `/api/v1/password/update`,
+            {password},
+            config
+        );
+        console.log(data);
+        dispatch({
+            type:UPDATE_PASSWORD_SUCCESS,
+            payload:data.success   
+        })
+    }
+    catch(error){
+        dispatch({
+            type:UPDATE_PASSWORD_FAIL,
             payload:error.response.data.message
         })
     }

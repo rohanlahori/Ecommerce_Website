@@ -4,13 +4,15 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import "./Profile.css";
+import { useNavigate } from "react-router-dom";
+
 
 export const Profile = ({  }) => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-
+  const navigate=useNavigate();
   useEffect(() => {
     if (isAuthenticated === false) {
-    //   history.push("/login");
+      navigate("/login");
     }
   }, [ isAuthenticated]);
   return (
