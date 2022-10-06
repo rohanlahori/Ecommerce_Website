@@ -15,28 +15,25 @@ import { UPDATE_PROFILE_RESET } from '../../constants/userConstant'
 export default function UpdateProfile (){
     const navigate=useNavigate()
     const dispatch=useDispatch();
-    const{error,isUpdated,loading}=useSelector(state=>state.profile)
+    const {error,isUpdated_Profile,loading}=useSelector(state=>state.profile)
     const {user,isAuthenticated}=useSelector((state)=>state.user)
-    
-
     const [updateProfileName,setUpdateProfileName]=useState("");
     const [updateProfileEmail,setUpdateProfileEmail]=useState("");
 
 
     const updateProfileSubmit=(e)=>{
         e.preventDefault();
-        console.log({updateProfileName,updateProfileEmail});
         dispatch(updateprofile(updateProfileName,updateProfileEmail))
     }
-
-
+    
     useEffect(()=>{
+        console.log(error);
         if(error)
         {
             alert((error));
             dispatch(clear_Errors());
         }
-        if(isUpdated)
+        if(isUpdated_Profile)
         {
             alert("Profile Updated Successfully");
             dispatch(loadUser())
@@ -46,7 +43,7 @@ export default function UpdateProfile (){
                 type:UPDATE_PROFILE_RESET
             });
         }
-    },[dispatch,error,isUpdated,user]);
+    },[dispatch,error,isUpdated_Profile,user]);
 
   return (
     <Fragment>

@@ -17,7 +17,6 @@ exports.registerUser=catchAsyncErrors(async(req,res,next)=>{
     //     crop:"scale"
     // })
 
-    console.log({name,email,password})
     const user=await User.create({
         name,email,password,
         // avatar:{
@@ -148,32 +147,28 @@ exports.getUserdetails=catchAsyncErrors(async (req,res,next)=>{
 exports.updatePassword=catchAsyncErrors(async(req,res,next)=>{
     const user=await User.findById(req.user.id).select("+password");
     const isPasswordMatched=await user.comparePassword(req.body.oldPassword);
-    console.log(req.body.oldPassword);
-
+    console.log(user);
     if(!isPasswordMatched){
         return next(new ErrorHandler("Old Password is incorrect",401))
     }
-    if(req.body.newpassword !== req.body.confirmnewPassword){
+    if(req.body.newPassword !== req.body.confirmPassword){
+        console.log("Checking checking")
         return next(new ErrorHandler("Password and Confirm Password doesn't match",401))
     }
     user.password=req.body.confirmPassword;
     await user.save();
     // Save the whole data in database
-
     sendToken(user,200,res);
 });
 
 
-
 // Update User Porfile
 exports.updateProfile=catchAsyncErrors(async(req,res,next)=>{
-    console.log(req.body);
     const newUserData={
         name:req.body.updateProfileName,
         email:req.body.updateProfileEmail
     }
     const user=await User.findById(req.user.id);
-    console.log(newUserData.name);
     user.name=newUserData.name;
     user.email=newUserData.email;
    

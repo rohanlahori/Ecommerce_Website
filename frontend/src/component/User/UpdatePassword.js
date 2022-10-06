@@ -5,7 +5,7 @@ import { useState } from 'react'
 import MailOutlineIcon from "@mui/icons-material/MailOutline"
 import LockOpenIcon from "@mui/icons-material/LockOpen"
 import FaceIcon from "@mui/icons-material/Face"
-import { clear_Errors, login,register, updatepassword, updateprofile} from '../../actions/userAction'
+import { clear_Errors,loadUser,updatepassword, updateprofile} from '../../actions/userAction'
 import {useDispatch,useSelector} from "react-redux"
 import Loader from "../layout/Loader/Loader"; 
 import LockIcon from "@mui/icons-material/Lock"
@@ -17,33 +17,46 @@ export default function UpdatePassword() {
 
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    const {isAuthenticated}=useSelector((state)=>state.user)
-    const {error,isUpdated,loading}=useSelector((state)=>state.profile);
+    const {loading,isAuthenticated}=useSelector(state=>state.user)
+    let {error,isUpdated_Password}=useSelector(state=>state.profile);
     const [oldPassword,setoldPassword]=useState("");
     const [newPassword,setnewPassword]=useState("");
     const [confirmPassword,setconfirmPassword]=useState("");
 
+
+
     const updatePasswordSubmit=(e)=>{
         e.preventDefault();
-        dispatch(updatepassword({oldPassword,newPassword,confirmPassword}))
+        console.log(newPassword,confirmPassword);
+        if(newPassword===confirmPassword)
+        {
+            dispatch(updatepassword(oldPassword,newPassword,confirmPassword))
+            console.log(error);
+        }
+        else{
+            alert("Password and Confirm Password doesn't match");
+            window.location.reload(false);
+        }
     }
 
     useEffect(()=>{
         if(error)
         {
-            console.log(error)
             alert((error));
             dispatch(clear_Errors());
+            window.location.reload(false);
         }
-        if(isUpdated)
+        if(isUpdated_Password)
         {
             alert("Password Updated Successfully");
+            dispatch(loadUser())
             navigate("/account")
             dispatch({
                 type:UPDATE_PASSWORD_RESET
             })
         }
-    },[dispatch,error,isAuthenticated]);
+    },[dispatch,error,isUpdated_Password]);
+
 
 
   return (

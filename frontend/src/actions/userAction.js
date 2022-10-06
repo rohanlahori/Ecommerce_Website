@@ -85,7 +85,6 @@ export const loadUser=()=>async(dispatch)=>{
         dispatch({type:LOAD_USER_REQUEST});
 
         const {data}=await axios.get(`/api/v1/me`)
-        console.log(data)
         dispatch({
             type:LOAD_USER_SUCCESS,
             payload:data.user
@@ -150,15 +149,13 @@ export const updateprofile=(updateProfileName,updateProfileEmail)=>async(dispatc
 
 
 
-export const updatepassword=(password)=>async(dispatch)=>{
-    console.log(password)
+export const updatepassword=(oldPassword,newPassword,confirmPassword)=>async(dispatch)=>{
     try{
         dispatch({type:UPDATE_PASSWORD_REQUEST});
         const config={headers: {"Content-Type":"application/json"}}
-
         const {data}=await axios.put(
             `/api/v1/password/update`,
-            {password},
+            {oldPassword,newPassword,confirmPassword},
             config
         );
         console.log(data);

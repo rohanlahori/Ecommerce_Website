@@ -154,7 +154,6 @@ exports.deleteReview=catchAsyncErrors(async(req,res,next)=>{
     });
     avg/=(product.reviews.length);
 
-    console.log(1000)
     const ratings=avg;
     const numberofReviews=reviews.length;
 

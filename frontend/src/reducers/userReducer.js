@@ -91,25 +91,40 @@ export const profileReducer=(state={},action)=>
                 loading:true,
             };
         case UPDATE_PROFILE_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                isAuthenticated:true,
+                isUpdated_Profile:true
+
+            };
             case UPDATE_PASSWORD_SUCCESS:
             return{
                 ...state,
                 loading:false,
                 isAuthenticated:true,
-                isUpdated:action.payload
+                isUpdated_Password:true
             };
         case UPDATE_PROFILE_FAIL:
-            case UPDATE_PROFILE_FAIL:
             return{
                 ...state,
                 loading:false,
-                error: action.payload
+                error: action.payload,
+                isUpdated_Profile:false
             };
+            case UPDATE_PASSWORD_FAIL:
+                return{
+                    ...state,
+                    loading:false,
+                    error:action.payload,
+                    isUpdated_Password:false
+                }
         case UPDATE_PROFILE_RESET:
             case UPDATE_PASSWORD_RESET:
             return{
                 ...state,
-                isUpdated:false
+                isUpdated_Profile:false,
+                isUpdated_Password:false
             };
         case CLEAR_ERRORS:
         return{

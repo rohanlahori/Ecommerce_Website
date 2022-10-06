@@ -6,7 +6,6 @@ const catchAsyncErrors=require('../middleware/catchAsyncErrors')
 
 // Add new Order
 exports.newOrder=catchAsyncErrors(async(req,res,next)=>{
-    console.log(100);
     const 
     {
         shippingInfo,
