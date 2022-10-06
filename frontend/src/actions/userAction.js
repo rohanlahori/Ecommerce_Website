@@ -22,7 +22,9 @@ import{
     UPDATE_PASSWORD_RESET,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_FAIL,
-    UPDATE_PASSWORD_REQUEST
+    UPDATE_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_FAIL,
+    FORGOT_PASSWORD_REQUEST,FORGOT_PASSWORD_SUCCESS
 } from "../constants/userConstant";
 
 
@@ -171,6 +173,33 @@ export const updatepassword=(oldPassword,newPassword,confirmPassword)=>async(dis
         })
     }
 };
+
+
+export const forgotpassword=(email)=>async(dispatch)=>{
+    try{
+        console.log("Checking")
+        dispatch({type:FORGOT_PASSWORD_REQUEST});
+        const config={headers: {"Content-Type":"application/json"}}
+        const {data}=await axios.post(
+            `/api/v1/password/forgot`,
+            {email},
+            config
+        );
+        console.log(data)
+        dispatch({
+            type:FORGOT_PASSWORD_SUCCESS,
+            payload:data.success   
+        })
+    }
+    catch(error){
+        dispatch({
+            type:FORGOT_PASSWORD_FAIL,
+            payload:error.response.data.message
+        })
+    }
+};
+
+
 
 
 export const clear_Errors =()=> async(dispatch)=>{

@@ -22,6 +22,7 @@ import {useSelector} from "react-redux"
 import {Profile} from "./component/User/Profile.js"
 import UpdateProfile from "./component/User/UpdateProfile.js"
 import UpdatePassword from "./component/User/UpdatePassword"
+import ForgotPassword from './component/User/ForgotPassword';
 
 function App() {
   React.useEffect(()=>{
@@ -49,6 +50,7 @@ function App() {
           <Route path="/login" element={<LoginSignUp/>}></Route>
           <Route exact path="/account" element={<Profile/>}></Route>
           <Route exact path="/me/update" element={<UpdateProfile/>}></Route>
+          <Route exact path="/password/forgot/" element={<ForgotPassword/>}></Route>
           <Route exact path="/password/update/" element={<UpdatePassword/>}></Route>
       </Routes>
     {/* <Footer/> */}

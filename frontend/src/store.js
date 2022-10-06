@@ -3,13 +3,14 @@ import thunk from "redux-thunk"
 import {composeWithDevTools} from "redux-devtools-extension"
 import { ProductReducer } from "./reducers/productReducer";
 import { ProductDetailsReducer } from "./reducers/productReducer";
-import { profileReducer, userReducer } from "./reducers/userReducer";
+import { forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReducer";
 
 const reudcer=combineReducers({
     products:ProductReducer,
     productdetails:ProductDetailsReducer,
     user:userReducer,
-    profile:profileReducer
+    profile:profileReducer,
+    forgotPassword:forgotPasswordReducer
     // producctdetails:ProductReducer,
     // productDetails:ProductDetailsReducer
 });

@@ -4,6 +4,7 @@ const User=require('../models/userModels')
 const sendToken=require('../utils/jwttoken')
 const sendEmail=require('../utils/sendEmail')
 const crypto=require('crypto');
+const { raw } = require('body-parser');
 
 
 
@@ -69,6 +70,7 @@ exports.logout=catchAsyncErrors(async(req,res,next)=>{
 // Forgot Password
 exports.forgotPassword=catchAsyncErrors(async(req,res,next)=>{
     const user=await User.findOne({email:req.body.email});
+    console.log(req.body.email);
     if(!user){
         return next(new ErrorHandler("User Not Found",404));
     }
