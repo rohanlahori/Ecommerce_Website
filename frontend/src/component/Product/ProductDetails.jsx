@@ -8,6 +8,7 @@ import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js"
 import { useState } from "react";
+import { addItemstoCart } from "../../actions/cartAction";
 
 const ProductDetails = ({req}) => 
 {
@@ -37,6 +38,10 @@ const ProductDetails = ({req}) =>
     }
   }
 
+  const addtocartHandler=()=>{
+    dispatch(addItemstoCart(id,quantity));
+    alert("Item Added to Cart");
+  }
   useEffect(()=>{
       dispatch(getProductDetails(id));
   },[dispatch,id,error]);
@@ -92,7 +97,7 @@ const ProductDetails = ({req}) =>
                 </div>{""}
                 <br></br>
                 <br></br>
-                  <button id="addtocart">Add To Cart</button>
+                  <button id="addtocart" onClick={addtocartHandler}>Add To Cart</button>
                 </div>
                 <br></br>
                 <p>
