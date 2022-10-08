@@ -44,12 +44,12 @@
   
   .detailsBlock-1 > h2 {
     color: rgb(54, 54, 54);
-    font: 600 1.6vmax "Roboto";
+    font: 600 1.6vmax "Arial";
   }
   
   .detailsBlock-1 > p {
     color: rgba(54, 54, 54, 0.582);
-    font: 200 0.6vmax cursive;
+    font: 200 0.6vmax "Arial";
   }
   
   .detailsBlock-2 {
@@ -64,7 +64,7 @@
   
   
   .detailsBlock-2-span {
-    font: 200 0.8vmax cursive;
+    font: 200 0.8vmax "Arial";
     color: rgba(0, 0, 0, 0.699);
   }
   
@@ -74,7 +74,7 @@
   
   .detailsBlock-3 > h1 {
     color: rgba(17, 17, 17, 0.795);
-    font: 400 1.8vmax "Franklin Gothic Medium";
+    font: 400 1.8vmax "Arial";
     margin: 1vmax 0;
   }
   .detailsBlock-3-1 {
@@ -100,7 +100,7 @@
     width: 1vmax;
     text-align: center;
     outline: none;
-    font: 400 0.8vmax "Roboto";
+    font: 400 0.8vmax "Arial";
     color: rgba(0, 0, 0, 0.74);
   }
   
@@ -126,7 +126,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.205);
     padding: 1vmax 0;
     color: rgba(0, 0, 0, 0.651);
-    font: 400 1vmax "Roboto";
+    font: 400 1vmax "Arial";
     margin: 1vmax 0;
   }
   
@@ -146,7 +146,7 @@
     border: none;
     background-color: tomato;
     color: black;
-    font: 500 0.7vmax "Roboto";
+    font: 500 0.7vmax "Arial";
     border-radius: 20px;
     padding: 0.6vmax 2vmax;
     margin: 1vmax 0;
@@ -170,7 +170,7 @@
     margin: 1vmax 0;
     outline: none;
     padding: 1rem;
-    font: 300 1rem "Roboto";
+    font: 300 1rem "Arial";
   }
   .reviews{
     display: flex;
@@ -178,7 +178,7 @@
   }
   .reviewsHeading {
     color: #000000be;
-    font: 500 1.4vmax "Roboto";
+    font: 500 1.4vmax "Arial";
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.226);
     padding: 1vmax;
@@ -204,7 +204,7 @@
   }
   .reviewCard > p {
     color: rgba(0, 0, 0, 0.836);
-    font: 600 0.9vmax "Roboto";
+    font: 600 0.9vmax "Arial";
   }
   .reviewCardComment {
     color: rgba(0, 0, 0, 0.445);
@@ -212,7 +212,7 @@
   }
   
   .noReviews {
-    font: 400 1.3vmax "Gill Sans";
+    font: 400 1.3vmax "Arial";
     text-align: center;
     color: rgba(0, 0, 0, 0.548);
   }
@@ -245,7 +245,7 @@
     }
   
     .detailsBlock-3 > h1 {
-      font: 700 3vmax "Franklin Gothic Medium";
+      font: 700 3vmax "Arial";
       text-align: center;
     }
   
@@ -264,11 +264,11 @@
     .detailsBlock-3-1-1 > input {
       padding: 1.5vmax;
       width: 3vmax;
-      font: 400 1.8vmax "Roboto";
+      font: 400 1.8vmax "Arial";
     }
   
     .detailsBlock-3-1 > button:last-child {
-      font: 500 1.7vmax "Roboto";
+      font: 500 1.7vmax "Arial";
       padding: 1.5vmax;
       width: 20vmax;
       margin: 3vmax 0;
@@ -277,28 +277,32 @@
     .detailsBlock-3 > p {
       padding: 2.5vmax 0;
       text-align: center;
-      font: 400 2vmax "Roboto";
+      font: 400 2vmax "Arial";
     }
   
     .detailsBlock-4 {
-      font: 500 2.5vmax sans-serif;
+      font: 500 2.5vmax "Arial";
     }
   
     .detailsBlock-4 > p {
-      font: 300 1.8vmax sans-serif;
+      font: 300 1.8vmax "Arial";
     }
   
     .submitReview {
-      font: 500 1.7vmax "Roboto";
+      font: 500 1.7vmax "Arial";
       padding: 1.5vmax;
       width: 20vmax;
       margin: 3vmax 0;
     }
   
     .reviewCard > p {
-      font: 600 3vw "Roboto";
+      font: 600 3vw "Arial";
     }
     .reviewCardComment {
-      font: 300 5vw cursive;
+      font: 300 5vw "Arial";
     }
   }  
+
+  .quantity{
+    color:black
+  }

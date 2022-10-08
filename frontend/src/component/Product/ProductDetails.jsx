@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Loader from "../layout/Loader/Loader";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js"
+import { useState } from "react";
 
 const ProductDetails = ({req}) => 
 {
@@ -15,11 +16,30 @@ const ProductDetails = ({req}) =>
   const {product,loading,error}= 
     useSelector((state)=>state.productdetails
   );
+  const[quantity,setquantity]=useState(1);
+
+  const add_quantity=()=>{
+    if(product.Stock>=quantity+1)
+    {
+      const qty=quantity+1;
+      setquantity(qty)
+    }
+    else{
+      alert(`Only ${quantity} in Stock`)
+    }
+  }
+
+  const subtract_quantity=()=>{
+    if(quantity>2)
+    {
+      const qty=quantity-1;
+      setquantity(qty)
+    }
+  }
 
   useEffect(()=>{
       dispatch(getProductDetails(id));
   },[dispatch,id,error]);
-
 
   const options ={
     edit:false,
@@ -66,18 +86,22 @@ const ProductDetails = ({req}) =>
               <h2>{`Rs ${product.price}`}</h2>
               <div className="detailsBlock-3-1">
                 <div className="detailsBlock-3-1-1">
-                <button>-</button>
-                <input value="1" type="number"/>
-                <button>+</button>
+                <button onClick={subtract_quantity}>-</button>
+                <input className="quantity" value={quantity} />
+                <button onClick={add_quantity}>+</button>
                 </div>{""}
                 <br></br>
-                <button id="addtocart">Add To Cart</button>
+                <br></br>
+                  <button id="addtocart">Add To Cart</button>
                 </div>
                 <br></br>
                 <p>
                   Status:{" "}
                   <b className={product.Stock<1 ? "redColor" : "greenColor"}>
-                      {product.Stock<1 ? "Out of Stock" : "In stock"}
+                      {
+                      product.Stock< 1 ? "Out of Stock" 
+                      : "In stock"
+                      }
                   </b>
                 </p>
             </div>
