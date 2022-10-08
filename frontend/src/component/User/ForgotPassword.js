@@ -29,7 +29,7 @@ const ForgotPassword=()=>{
         if(emailsent)
         {
             alert("Email Sent Successfully");
-            navigate("/account")
+            navigate('/login')
         }
     },[dispatch,error,emailsent]);
 
