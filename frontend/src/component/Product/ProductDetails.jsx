@@ -52,20 +52,20 @@ const ProductDetails = ({req}) =>
             </Carousel>
           </div>
           <div>
-           <div className="detailsblock-1">
+           <div className="detailsBlock-1">
             <h2>{product.name}</h2>
             <p>Product # {product._id}</p>
             </div> 
-            <div className="detailsblock-2">
+            <div className="detailsBlock-2">
               <ReactStars {...options}></ReactStars>
               <span>({product.numberofReviews} Reviews)</span>
             </div> 
 
 
-            <div className="detailsblock-3">
+            <div className="detailsBlock-3">
               <h2>{`Rs ${product.price}`}</h2>
-              <div className="detailsblock-3-1">
-                <div className="detailsblock-3-1-1">
+              <div className="detailsBlock-3-1">
+                <div className="detailsBlock-3-1-1">
                 <button>-</button>
                 <input value="1" type="number"/>
                 <button>+</button>
@@ -81,10 +81,10 @@ const ProductDetails = ({req}) =>
                   </b>
                 </p>
             </div>
-            <div className="details-block-4">
+            <div className="detailsBlock-4">
               <h4>Description : {product.description}</h4>
             </div>
-            <button  className="submitreview">Submit Review</button>
+            <button  className="submitReview">Submit Review</button>
             </div>
             </div>
             <h3 className="reviewsHeading">Reviews</h3>
