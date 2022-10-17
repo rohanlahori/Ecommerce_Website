@@ -26,9 +26,8 @@ import {useState} from "react"
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../actions/productAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-const pages = ['Laptop','Rackets', 'String', 'Bags', "Apparels","Clothes"];
-
-const ResponsiveAppBar = () => {
+const pages=[];
+const ResponsiveAppBar1 = () => {
   const{isAuthenticated}=useSelector(state=>state.user)
   console.log(isAuthenticated)
   const dispatch=useDispatch()
@@ -185,4 +184,4 @@ useEffect(()=>{
       </Box>
   );
 };
-export default ResponsiveAppBar;
+export default ResponsiveAppBar1;

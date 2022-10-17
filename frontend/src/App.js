@@ -25,6 +25,7 @@ import UpdatePassword from "./component/User/UpdatePassword"
 import ForgotPassword from './component/User/ForgotPassword';
 import ResetPassword from './component/User/ResetPassword';
 import Cart from './component/Cart/Cart.js'
+import CommonHeader from "./component/Navigation/navigation_bar_common"
 function App() {
   React.useEffect(()=>{
     WebFont.load({
@@ -42,7 +43,8 @@ function App() {
         <Navigate/>
         {isAuthenticated && <UserOptions user={user}/>}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+          <Home />} />
           <Route path="/navigationbar" element={<Navigate/>} />
           <Route path="/loader" element={<Loader />} />
           <Route path="/product/:id" element={<ProductDetails/>}/>
@@ -55,6 +57,7 @@ function App() {
           <Route exact path="/password/update/" element={<UpdatePassword/>}></Route>
           <Route exact path="/password/reset/:token" element={<ResetPassword/>}></Route>
           <Route exact path="/Cart" element={<Cart/>}></Route>
+          <Route exact path="/account" element={<Profile/>}></Route>
       </Routes>
     {/* <Footer/> */}
   </BrowserRouter>

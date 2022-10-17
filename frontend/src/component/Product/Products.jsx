@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import ProductCard from '../Home/ProductCard'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import Navigate from "../Navigation/navigation_bar";
 
 function valuetext(value) {
     return `${value}°C`;
@@ -55,6 +56,7 @@ useEffect(()=>{
 
   return (
     <Fragment>
+        {/* <Navigate/> */}
     {loading ? (
         <Loader/>
     ):

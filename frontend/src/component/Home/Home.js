@@ -6,6 +6,7 @@ import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
+import Header from "../layout/Header/Header";
 
 const Home = () => {
 
